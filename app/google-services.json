@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "908004988884",
+    "project_id": "postpc-2021-ex7-427c1",
+    "storage_bucket": "postpc-2021-ex7-427c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908004988884:android:fe558e44a077c9f25ea841",
+        "android_client_info": {
+          "package_name": "huji.postpc.rachels.sandwich"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908004988884-ojeq2kgtq99q9btg0ng6f4nud9dh4m26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIQI4dSlSAXTjXxNlU0I64mrZXKrs3QGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908004988884-ojeq2kgtq99q9btg0ng6f4nud9dh4m26.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
