@@ -37,6 +37,7 @@
             android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"/>
+
     </LinearLayout>
 
     <View
@@ -110,7 +111,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="2"
+        android:text="0"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/midPickleView"
         app:layout_constraintEnd_toStartOf="@+id/plusPickleImageButton"
@@ -159,38 +160,19 @@
         app:layout_constraintBottom_toTopOf="@+id/midHummusView"
         app:layout_constraintStart_toEndOf="@+id/hummusImageView" />
 
-    <ImageButton
-        android:id="@+id/minusHummusImageButton"
-        android:layout_height="20dp"
-        android:layout_width="20dp"
-        android:layout_marginStart="100dp"
-        android:src="@drawable/ic_minus"
-        app:layout_constraintEnd_toEndOf="@+id/plusHummusImageButton"
-        app:layout_constraintStart_toEndOf="@+id/hummusTextView"
-        app:layout_constraintTop_toTopOf="@+id/hummusTextView" />
-
     <TextView
         android:id="@+id/hummusIndicatorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="2"
+        android:text="No, thanks"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/midHummusView"
-        app:layout_constraintEnd_toStartOf="@+id/plusHummusImageButton"
-        app:layout_constraintStart_toEndOf="@+id/minusHummusImageButton"
-        />
-
-
-    <ImageButton
-        android:id="@+id/plusHummusImageButton"
-        android:layout_height="20dp"
-        android:layout_width="20dp"
-        android:src="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/minusHummusImageButton"
-        app:layout_constraintTop_toTopOf="@+id/hummusTextView" />
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        />
 
     <ImageView
         android:id="@+id/tahiniImageView"
@@ -223,15 +205,6 @@
         app:layout_constraintBottom_toTopOf="@+id/midTahiniView"
         app:layout_constraintStart_toEndOf="@+id/tahiniImageView" />
 
-    <ImageButton
-        android:id="@+id/minusTahiniImageButton"
-        android:layout_height="20dp"
-        android:layout_width="20dp"
-        android:layout_marginStart="100dp"
-        android:src="@drawable/ic_minus"
-        app:layout_constraintEnd_toEndOf="@+id/plusTahiniImageButton"
-        app:layout_constraintStart_toEndOf="@+id/tahiniTextView"
-        app:layout_constraintTop_toTopOf="@+id/tahiniTextView" />
 
     <TextView
         android:id="@+id/tahiniIndicatorTextView"
@@ -239,22 +212,13 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="2"
+        android:text="No, thanks"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/midTahiniView"
-        app:layout_constraintEnd_toStartOf="@+id/plusTahiniImageButton"
-        app:layout_constraintStart_toEndOf="@+id/minusTahiniImageButton"
-        />
-
-
-    <ImageButton
-        android:id="@+id/plusTahiniImageButton"
-        android:layout_height="20dp"
-        android:layout_width="20dp"
-        android:src="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/minusTahiniImageButton"
-        app:layout_constraintTop_toTopOf="@+id/tahiniTextView" />
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        />
 
     <EditText
         android:id="@+id/commentEditText"
@@ -271,7 +235,7 @@
         android:inputType="textCapSentences|textAutoCorrect" />
 
     <ImageButton
-        android:id="@+id/saveOrderImageButton"
+        android:id="@+id/placeOrderImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_place_order"
