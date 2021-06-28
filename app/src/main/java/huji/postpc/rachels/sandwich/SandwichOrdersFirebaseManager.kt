@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
-private const val ORDERS_COLLECTION = "orders"
+const val ORDERS_COLLECTION = "orders"
 private const val FIRESTORE_LOG_TAG = "SandwichOrdersFirebase"
 private const val MANAGER_LOG_TAG = "SandwichOrdersManager"
 private const val SNAPSHOT_ERROR = "exception in snapshot: "
