@@ -21,6 +21,12 @@ class EditOrderActivity : OrderActivity() {
         saveOrderImageButton = findViewById(R.id.saveOrderImageButton)
         cancelOrderImageButton = findViewById(R.id.cancelOrderImageButton)
 
+        pickleCounterTextView.text = sandwichOrder.pickles.toString()
+        hummusIndicatorTextView.text = if (sandwichOrder.hummus) YES else NO
+        tahiniIndicatorTextView.text = if (sandwichOrder.tahini) YES else NO
+        nameEditText.setText(sandwichOrder.customerName)
+        commentEditText.setText(sandwichOrder.comment)
+
 
         nameEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -46,7 +52,7 @@ class EditOrderActivity : OrderActivity() {
         }
 
         cancelOrderImageButton.setOnClickListener {
-            firebaseManager.deleteSandwichOrder(sandwichOrder)
+            firebaseManager.setCurrentOrder(null)
             val intent = Intent(this, PlaceOrderActivity::class.java)
             startActivity(intent)
         }

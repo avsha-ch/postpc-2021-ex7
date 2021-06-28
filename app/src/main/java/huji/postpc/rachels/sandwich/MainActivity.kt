@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PlaceOrderActivity::class.java)
             startActivity(intent)
         }
+        else {
+            val intent = Intent(this, EditOrderActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

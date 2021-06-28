@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlaceOrderActivity" />
+        <activity android:name=".EditOrderActivity" />
     </application>
 
 </manifest>

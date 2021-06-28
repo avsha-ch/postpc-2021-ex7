@@ -8,8 +8,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-private const val YES = "Yes, please"
-private const val NO = "No, thanks"
+const val YES = "Yes, please"
+const val NO = "No, thanks"
 
 open class OrderActivity : AppCompatActivity() {
     protected lateinit var firebaseManager: SandwichOrdersFirebaseManager
@@ -19,12 +19,12 @@ open class OrderActivity : AppCompatActivity() {
     protected lateinit var sandwichOrder : SandwichOrder
 
     private lateinit var minusPickleImageButton: ImageButton
-    private lateinit var pickleCounterTextView: TextView
+    protected lateinit var pickleCounterTextView: TextView
     private lateinit var plusPickleImageButton: ImageButton
 
-    private lateinit var hummusIndicatorTextView: TextView
+    protected lateinit var hummusIndicatorTextView: TextView
 
-    private lateinit var tahiniIndicatorTextView: TextView
+    protected lateinit var tahiniIndicatorTextView: TextView
 
     protected lateinit var commentEditText: EditText
 

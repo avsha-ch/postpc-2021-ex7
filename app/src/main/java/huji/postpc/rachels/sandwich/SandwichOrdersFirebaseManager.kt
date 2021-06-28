@@ -46,10 +46,10 @@ class SandwichOrdersFirebaseManager(context : Context) {
     }
 
     fun setCurrentOrder(newSandwichOrder: SandwichOrder?) {
-        sp.edit().putString(SP_CURRENT_ORDER, gson.toJson(newSandwichOrder)).apply()
         if (newSandwichOrder == null && currentSandwichOrder != null){
             deleteSandwichOrder(currentSandwichOrder!!)
             currentSandwichOrder = null
+            sp.edit().putString(SP_CURRENT_ORDER, null).apply()
             return
         }
         else if (newSandwichOrder == null){
@@ -57,19 +57,13 @@ class SandwichOrdersFirebaseManager(context : Context) {
         }
         else {
             editSandwichOrder(newSandwichOrder)
-            currentSandwichOrder = newSandwichOrder
         }
 
     }
 
     fun addSandwichOrder(sandwichOrder: SandwichOrder) {
-        val docId = sandwichOrder.id
-        if (docId == null) {
-            Log.e(MANAGER_LOG_TAG, "An order without an ID!")
-            return
-        }
         if (getCurrentOrder() == null) {
-            setCurrentOrder(sandwichOrder)
+            currentSandwichOrder = sandwichOrder
             val firestore = FirebaseFirestore.getInstance()
 
             val doc = firestore.collection(ORDERS_COLLECTION).document()
@@ -77,10 +71,11 @@ class SandwichOrdersFirebaseManager(context : Context) {
             doc.set(sandwichOrder)
                 .addOnSuccessListener {
                     // TODO: maybe? sp.edit().putString(sandwichOrder.id, gson.toJson(sandwichOrder)).apply()
-                    Log.d(FIRESTORE_LOG_TAG, "Order " + docId + "was successfully added to firestore")
+                    Log.d(FIRESTORE_LOG_TAG, "Order " + doc.id + "was successfully added to firestore")
+                    sp.edit().putString(SP_CURRENT_ORDER, gson.toJson(sandwichOrder)).apply()
                 }
                 .addOnFailureListener { exception ->
-                    Log.e(FIRESTORE_LOG_TAG, "while trying to add order " + docId + "got error: " + exception)
+                    Log.e(FIRESTORE_LOG_TAG, "while trying to add order " + doc.id + "got error: " + exception)
                 }
         }
         else {
@@ -98,11 +93,12 @@ class SandwichOrdersFirebaseManager(context : Context) {
             return
         }
         alteredSandwichOrder.id = previousSandwichOrder.id
-        setCurrentOrder(alteredSandwichOrder)
+        currentSandwichOrder = alteredSandwichOrder
         val firestore = FirebaseFirestore.getInstance()
         firestore.collection(ORDERS_COLLECTION).document(previousSandwichOrder.id!!).set(alteredSandwichOrder)
             .addOnSuccessListener {
-                Log.d(FIRESTORE_LOG_TAG, "Order " + previousSandwichOrder.id + "was successfully deleted from firestore")
+                Log.d(FIRESTORE_LOG_TAG, "Order " + previousSandwichOrder.id + "was successfully updated in firestore")
+                sp.edit().putString(SP_CURRENT_ORDER, gson.toJson(alteredSandwichOrder)).apply()
             }
             .addOnFailureListener { exception : Exception ->
                 Log.e(FIRESTORE_LOG_TAG, "while trying to edit order " + previousSandwichOrder.id + "got error: " + exception)
@@ -110,7 +106,6 @@ class SandwichOrdersFirebaseManager(context : Context) {
     }
 
     fun deleteSandwichOrder(sandwichOrder: SandwichOrder){
-        setCurrentOrder(null)
         val docId = sandwichOrder.id
         if (docId == null) {
             Log.e(MANAGER_LOG_TAG, "An order without an ID!")
