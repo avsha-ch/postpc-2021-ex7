@@ -3,10 +3,12 @@ package huji.postpc.rachels.sandwich
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.gson.Gson
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 
 private const val ORDERS_COLLECTION = "orders"
 private const val FIRESTORE_LOG_TAG = "SandwichOrdersFirebase"
@@ -29,10 +31,28 @@ class SandwichOrdersFirebaseManager(context : Context) {
 
     init {
         // createLiveQuery()
+
         if (currentSandwichOrder == null){
             val temp = sp.getString(SP_CURRENT_ORDER, null)
             if (temp != null){
-                currentSandwichOrder = gson.fromJson(temp, SandwichOrder::class.java)
+                val savedSandwichOrder : SandwichOrder = gson.fromJson(temp, SandwichOrder::class.java)
+                val firestore = FirebaseFirestore.getInstance()
+                firestore.collection(ORDERS_COLLECTION)
+                    .document(savedSandwichOrder.id!!)
+                    .get()
+                    .addOnCompleteListener { task: Task<DocumentSnapshot> ->
+                        val document = task.result
+                        if (task.isSuccessful && document != null) {
+                            // yay success downloading!
+                            this.currentSandwichOrder = null
+                            val sandwichOrder = document.toObject(SandwichOrder::class.java)
+                            this.currentSandwichOrder = sandwichOrder
+                            Log.d(FIRESTORE_LOG_TAG, "Order " + currentSandwichOrder!!.id + "was successfully queried from firestore")
+                            sp.edit().putString(SP_CURRENT_ORDER, gson.toJson(currentSandwichOrder)).apply()
+                        } else {
+                            Log.d(FIRESTORE_LOG_TAG, "Error getting documents: ", task.exception)
+                        }
+                    }
             }
         }
     }
@@ -42,7 +62,8 @@ class SandwichOrdersFirebaseManager(context : Context) {
             return currentSandwichOrder
         }
         val temp = sp.getString(SP_CURRENT_ORDER, null)
-        return gson.fromJson(temp, SandwichOrder::class.java)
+        currentSandwichOrder = gson.fromJson(temp, SandwichOrder::class.java)
+        return currentSandwichOrder
     }
 
     fun setCurrentOrder(newSandwichOrder: SandwichOrder?) {
@@ -121,7 +142,7 @@ class SandwichOrdersFirebaseManager(context : Context) {
             }
     }
 
-    public fun changeCurrentStatus(newStatus : Status){
+    public fun changeCurrentStatus(newStatus : String){
         currentSandwichOrder = getCurrentOrder()
         if (currentSandwichOrder == null) {
             Log.e(MANAGER_LOG_TAG, "No order to change")
@@ -136,7 +157,7 @@ class SandwichOrdersFirebaseManager(context : Context) {
 
 //    private fun createLiveQuery() {
 //        val firestore = FirebaseFirestore.getInstance()
-//        val ordersReference = firestore.collection(ORDERS_COLLECTION) //.whereEqualTo(STATUS_FIELD, Status.WAITING.getStr)
+//        val ordersReference = firestore.collection(ORDERS_COLLECTION) //.whereEqualTo(STATUS_FIELD, WAITING)
 //
 //        val liveQuery = ordersReference.addSnapshotListener { value, exception ->
 //            if (exception != null){

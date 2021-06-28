@@ -1,8 +1,10 @@
 package huji.postpc.rachels.sandwich
 
-enum class Status(val getStr: String) {
-    WAITING("waiting"), IN_PROGRESS("in-progress"), READY("ready"), DONE("done")
-}
+public const val WAITING = "waiting"
+public const val IN_PROGRESS = "in-progress"
+public const val READY = "ready"
+public const val DONE = "done"
+
 
 data class SandwichOrder(
     var id: String? = null,
@@ -11,5 +13,5 @@ data class SandwichOrder(
     var hummus: Boolean = false,
     var tahini: Boolean = false,
     var comment: String? = null,
-    var status: Status = Status.WAITING,
+    var status: String = WAITING,
 )
