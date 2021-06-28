@@ -17,4 +17,7 @@ class MakingOrderActivity : AppCompatActivity() {
             .load(R.drawable.ic_sandwich)
             .into(sandwichImageView)
     }
+
+    override fun onBackPressed() { }
+
 }

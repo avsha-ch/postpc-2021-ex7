@@ -67,7 +67,12 @@ class SandwichOrdersFirebaseManager(context : Context) {
     }
 
     fun setCurrentOrder(newSandwichOrder: SandwichOrder?) {
-        if (newSandwichOrder == null && currentSandwichOrder != null){
+        if (newSandwichOrder == null && currentSandwichOrder != null && currentSandwichOrder!!.status == DONE){
+            currentSandwichOrder = null
+            sp.edit().putString(SP_CURRENT_ORDER, null).apply()
+            return
+        }
+        else if (newSandwichOrder == null && currentSandwichOrder != null){
             deleteSandwichOrder(currentSandwichOrder!!)
             currentSandwichOrder = null
             sp.edit().putString(SP_CURRENT_ORDER, null).apply()
@@ -152,7 +157,9 @@ class SandwichOrdersFirebaseManager(context : Context) {
             currentSandwichOrder!!.status = newStatus
             editSandwichOrder(currentSandwichOrder!!)
         }
-
+        if (newStatus == DONE) {
+            setCurrentOrder(null)
+        }
     }
 
 //    private fun createLiveQuery() {

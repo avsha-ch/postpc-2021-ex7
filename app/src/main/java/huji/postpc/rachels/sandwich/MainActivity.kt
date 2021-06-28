@@ -22,17 +22,22 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PlaceOrderActivity::class.java)
             startActivity(intent)
         }
-        else if (currentOrder.status == IN_PROGRESS){
-            val intent = Intent(this, MakingOrderActivity::class.java)
-            startActivity(intent)
-            println("Hello")
-        }
         else if (currentOrder.status == WAITING) {
             val intent = Intent(this, EditOrderActivity::class.java)
             startActivity(intent)
         }
+        else if (currentOrder.status == IN_PROGRESS){
+            val intent = Intent(this, MakingOrderActivity::class.java)
+            startActivity(intent)
+        }
+        else if (currentOrder.status == READY) {
+            val intent = Intent(this, ReadyOrderActivity::class.java)
+            startActivity(intent)
+        }
 
     }
+
+    override fun onBackPressed() { }
 
 
 }

@@ -20,6 +20,7 @@
         <activity android:name=".PlaceOrderActivity" />
         <activity android:name=".EditOrderActivity" />
         <activity android:name=".MakingOrderActivity" />
+        <activity android:name=".ReadyOrderActivity" />
     </application>
 
 </manifest>

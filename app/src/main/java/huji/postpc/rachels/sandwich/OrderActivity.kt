@@ -109,4 +109,7 @@ open class OrderActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() { }
+
 }
