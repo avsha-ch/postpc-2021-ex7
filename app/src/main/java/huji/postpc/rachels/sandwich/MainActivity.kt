@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
         currentOrder = firebaseManager!!.getCurrentOrder()
         when {
-            currentOrder == null -> {
+            (currentOrder == null || currentOrder!!.status == DONE) -> {
                 val intent = Intent(this, PlaceOrderActivity::class.java)
                 startActivity(intent)
             }

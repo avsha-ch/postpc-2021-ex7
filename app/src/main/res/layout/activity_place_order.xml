@@ -58,8 +58,8 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/tooldbarBottom"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:lines="5"
+        android:inputType="text"
+        android:lines="1"
         />
 
 
@@ -67,12 +67,11 @@
         android:id="@+id/pickleImageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="40dp"
         android:padding="10dp"
         android:src="@drawable/ic_pickle"
         app:layout_constraintStart_toStartOf="@id/nameEditText"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-        app:layout_constraintLeft_toLeftOf="@id/nameEditText"
+        app:layout_constraintLeft_toLeftOf="@+id/nameEditText"
         />
 
     <View
@@ -101,6 +100,8 @@
         android:id="@+id/minusPickleImageButton"
         android:layout_height="20dp"
         android:layout_width="20dp"
+        android:scaleType="fitXY"
+        android:background="@color/white"
         android:layout_marginStart="100dp"
         android:src="@drawable/ic_minus"
         app:layout_constraintEnd_toEndOf="@+id/plusPickleImageButton"
@@ -125,6 +126,8 @@
         android:id="@+id/plusPickleImageButton"
         android:layout_height="20dp"
         android:layout_width="20dp"
+        android:scaleType="fitXY"
+        android:background="@color/white"
         android:src="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/minusPickleImageButton"
@@ -133,8 +136,8 @@
 
     <ImageView
         android:id="@+id/hummusImageView"
-        android:layout_marginTop="40dp"
         android:padding="15dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pickleImageView"
         android:src="@drawable/ic_hummus"
@@ -171,15 +174,16 @@
         android:text="No, thanks"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/midHummusView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/plusPickleImageButton"
+        app:layout_constraintStart_toStartOf="@+id/minusPickleImageButton"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         />
 
     <ImageView
         android:id="@+id/tahiniImageView"
-        android:layout_marginTop="40dp"
         android:padding="5dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hummusImageView"
         android:src="@drawable/ic_tahini"
@@ -217,7 +221,8 @@
         android:text="No, thanks"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/midTahiniView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/plusPickleImageButton"
+        app:layout_constraintStart_toStartOf="@+id/minusPickleImageButton"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         />
@@ -225,14 +230,16 @@
     <EditText
         android:id="@+id/commentEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="40dp"
         android:hint="Any comments?"
         android:textColorHint="@color/text_color"
         android:textColor="@color/text_color"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tahiniImageView"
-        app:layout_constraintStart_toStartOf="@id/tahiniImageView"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toBottomOf="@+id/tahiniImageView"
+        app:layout_constraintStart_toStartOf="@+id/tahiniImageView"
         android:importantForAutofill="no"
         android:inputType="textCapSentences|textAutoCorrect" />
 
